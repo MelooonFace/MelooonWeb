@@ -38,7 +38,7 @@
 			else
 			{
 				$debug = debug_backtrace();
-				$__output->append_output("<b>Error:</b> View could not be loaded, view file <b>{$full_file_path}</b> was not found! View requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.");
+				$__output->append_output("<b>Error:</b> View could not be loaded, view file <b>{$full_file_path}</b> was not found! View requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.<br />\n");
 			}
 		}
 		
@@ -47,6 +47,8 @@
 		 */
 		public function model($file_path, $custom_name = null)
 		{
+			global $__output;
+			
 			$file_path = str_replace(".php", "", $file_path);
 			$full_file_path = APP_PATH. 'models/' .$file_path. '.php';
 			
@@ -66,7 +68,7 @@
 					
 					if(!($this->model->$this_name instanceof Model))
 					{
-						$__output->append_output("<b>Warning:</b> Model <b>$model_name</b> is not an instance of Model.");
+						$__output->append_output("<b>Warning:</b> Model <b>$model_name</b> is not an instance of Model.<br />\n");
 					}
 					
 					return $this->model->$this_name;
@@ -75,14 +77,14 @@
 				else 
 				{
 					$debug = debug_backtrace();
-					$__output->append_output("<b>Error:</b> Model could not be loaded, class <b>$model_name</b> not found! Model requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.");
+					$__output->append_output("<b>Error:</b> Model could not be loaded, class <b>$model_name</b> not found! Model requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.<br />\n");
 				}
 			}
 			
 			else 
 			{
 				$debug = debug_backtrace();
-				$__output->append_output("<b>Error:</b> Model could not be loaded, view file <b>{$full_file_path}</b> was not found! Model requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.");
+				$__output->append_output("<b>Error:</b> Model could not be loaded, view file <b>{$full_file_path}</b> was not found! Model requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.<br />\n");
 			}
 		}
 		
