@@ -27,4 +27,4 @@
 	
 	$__load->model->test->do_something();
 	
-	Loader::load_controller("Hey");
+	Loader::load_controller("Welcome");

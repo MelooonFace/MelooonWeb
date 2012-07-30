@@ -26,7 +26,7 @@
 			$class_name = ucfirst(strtolower($class_name));
 			
 			if(self::is_loaded( $class_name ))
-				return self::$get_class( $class_name );
+				return self::get_class( $class_name );
 			
 			if(file_exists( APP_PATH. 'core/classes/' .$file_path. '.php' ))
 			{
@@ -86,9 +86,29 @@
 			$file_path = str_replace(".php", "", $file_path);
 			$full_file_path = APP_PATH. 'controllers/' .$file_path. '.php';
 			
+			$class_name = ucfirst(strtolower(basename($file_path)));
+			
 			if(file_exists( $full_file_path ))
 			{
+				require_once( $full_file_path );
 				
+				if(class_exists( $class_name ))
+				{
+					$m = new $class_name();
+					
+					if(!($m instanceof Controller))
+					{
+						$__output->append_output("<br />\n<b>Warning:</b> Controller <b>$class_name</b> is not an instance of Controller.");
+					}
+					
+					return $m;
+				}
+				
+				else
+				{
+					$debug = debug_backtrace();
+					$__output->append_output("<br />\n<b>Error:</b> Controller could not be loaded, class <b>{$class_name}</b> was not found! Controller requested in <b>" .$debug[0]['file']. "</b> on <b>line " .$debug[0]['line']. "</b>.");
+				}
 			}
 			
 			else
