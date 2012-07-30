@@ -18,6 +18,9 @@
 	// Load the output class first, just incase some pre-controller classes have something to say
 	$__output =& Loader::load_class("Output");
 	
+	// Create an instance of the config class
+	$__conf =& Loader::load_class("Config");
+	
 	// Then load the 'Load' class to get ready for in-controller loads
 	$__load =& Loader::load_class("Load");
 	
