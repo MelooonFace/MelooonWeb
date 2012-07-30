@@ -22,7 +22,6 @@
 		 */
 		public function &load_class($file_path = null)
 		{
-			// Get the classname from the file_path
 			$class_name = basename($file_path);
 			$class_name = ucfirst(strtolower($class_name));
 			

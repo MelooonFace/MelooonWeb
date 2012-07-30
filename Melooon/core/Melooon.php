@@ -7,6 +7,7 @@
 	 * Require the loader class, so we can start loading some pre-controller classes
 	 */
 	require_once(APP_PATH. 'core/system/'. 'Loader.php');
+	require_once(APP_PATH. 'core/system/'. 'Common.php');
 	
 	// Init the loader
 	new Loader();
@@ -17,4 +18,8 @@
 	// Then load the 'Load' class to get ready for in-controller loads
 	$__load =& Loader::load_class("Load");
 	
-	$__load->view("test.html");
+	$__load->view("test.1html");
+	
+	$__load->model("Test");
+	
+	$__load->model->test->do_something();
