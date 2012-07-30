@@ -21,6 +21,9 @@
 	// Create an instance of the config class
 	$__conf =& Loader::load_class("Config");
 	
+	// Load the uri class
+	$__uri =& Loader::load_class("Uri");
+	
 	// Then load the 'Load' class to get ready for in-controller loads
 	$__load =& Loader::load_class("Load");
 	
