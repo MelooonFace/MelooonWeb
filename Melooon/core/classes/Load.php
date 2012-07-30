@@ -38,7 +38,7 @@
 			else
 			{
 				$debug = debug_backtrace();
-				$__output->append_output("<b>Error:</b> View could not be loaded, view file <b>{$full_file_path}</b> was not found! View requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.<br />\n");
+				$__output->append_output("<br />\n<b>Error:</b> View could not be loaded, view file <b>{$full_file_path}</b> was not found! View requested in <b>" .$debug[0]['file']. "</b> on <b>line " .$debug[0]['line']. "</b>.");
 			}
 		}
 		
@@ -68,7 +68,7 @@
 					
 					if(!($this->model->$this_name instanceof Model))
 					{
-						$__output->append_output("<b>Warning:</b> Model <b>$model_name</b> is not an instance of Model.<br />\n");
+						$__output->append_output("<br />\n<b>Warning:</b> Model <b>$model_name</b> is not an instance of Model.");
 					}
 					
 					return $this->model->$this_name;
@@ -77,14 +77,14 @@
 				else 
 				{
 					$debug = debug_backtrace();
-					$__output->append_output("<b>Error:</b> Model could not be loaded, class <b>$model_name</b> not found! Model requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.<br />\n");
+					$__output->append_output("<br />\n<b>Error:</b> Model could not be loaded, class <b>$model_name</b> not found! Model requested in <b>" .$debug[0]['file']. "</b> on <b>line " .$debug[0]['line']. "</b>.");
 				}
 			}
 			
 			else 
 			{
 				$debug = debug_backtrace();
-				$__output->append_output("<b>Error:</b> Model could not be loaded, view file <b>{$full_file_path}</b> was not found! Model requested in <b>" .$debug[0]['file']. "</b> at <b>line " .$debug[0]['line']. "</b>.<br />\n");
+				$__output->append_output("<br />\n<b>Error:</b> Model could not be loaded, view file <b>{$full_file_path}</b> was not found! Model requested in <b>" .$debug[0]['file']. "</b> on <b>line " .$debug[0]['line']. "</b>.");
 			}
 		}
 		

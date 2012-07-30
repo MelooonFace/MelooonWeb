@@ -79,4 +79,23 @@
 			}
 		}
 		
+		public function load_controller($file_path)
+		{
+			global $__output;
+			
+			$file_path = str_replace(".php", "", $file_path);
+			$full_file_path = APP_PATH. 'controllers/' .$file_path. '.php';
+			
+			if(file_exists( $full_file_path ))
+			{
+				
+			}
+			
+			else
+			{
+				$debug = debug_backtrace();
+				$__output->append_output("<br />\n<b>Error:</b> Controller could not be loaded, controller file <b>{$full_file_path}</b> was not found! Controller requested in <b>" .$debug[0]['file']. "</b> on <b>line " .$debug[0]['line']. "</b>.");
+			}
+		}
+		
 	}
