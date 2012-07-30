@@ -34,3 +34,5 @@
 	$__load->model->test->do_something();
 	
 	Loader::load_controller("Welcome");
+	
+	die(var_dump(get_instance()));

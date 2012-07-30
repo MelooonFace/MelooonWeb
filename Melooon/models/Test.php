@@ -3,12 +3,15 @@
 	class Test extends Model
 	{
 		
+		function __construct()
+		{
+			parent::__construct();
+		}
+		
 		public function do_something()
 		{
 			// Temporary example
-			global $__output;
-			
-			$__output->append_output("Hey from <b>Test</b> model!");
+			// $this->m->set_output("LOL!");
 		}
 		
 	}

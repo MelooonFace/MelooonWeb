@@ -5,9 +5,9 @@
 		// A storage class, where items are held
 	}
 	
-	function get_instance()
+	function &get_instance()
 	{
-		Controller::get_instance();
+		return Controller::get_instance();
 	}
 	
 	function chuck_error($type = "Error", $message = "Unknown error")
