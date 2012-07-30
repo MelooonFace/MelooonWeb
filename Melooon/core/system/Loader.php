@@ -66,4 +66,17 @@
 			return (in_array( $class_name, self::$loaded ));
 		}
 		
+		/**
+		 * Loads the extends into the instance
+		 */
+		public function load_extends()
+		{
+			$files = glob(APP_PATH. "core/extends/*.php");
+			foreach($files as $file)
+			{
+				require_once($file); // Require only once, we know what they're used for
+				// Do nothing, we dont want to init the classes, they are only used for extendin
+			}
+		}
+		
 	}
