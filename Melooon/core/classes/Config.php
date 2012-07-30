@@ -17,6 +17,22 @@
 		}
 		
 		/**
+		 * Get a config item
+		 */
+		public function item()
+		{
+			$args = func_get_args();
+			
+			$ret = $this->config;
+			foreach($args as $arg)
+			{
+				$ret = $ret[$arg];
+			}
+			
+			return $ret;
+		}
+		
+		/**
 		 * Loads a (or array of) php config file(s) (requires a .php extention)
 		 */
 		function load($file_path = null)

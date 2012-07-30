@@ -11,7 +11,8 @@
 			
 			foreach(Loader::get_loaded() as $info)
 			{
-				$this->$info =& Loader::load_class( $info );
+				$handle = strtolower($info);
+				$this->$handle =& Loader::load_class( $info );
 			}
 		}
 		
