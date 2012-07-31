@@ -7,7 +7,7 @@
 		
 		function __construct()
 		{		
-			if(isset($_SERVER["argv"]))
+			if(isset($_SERVER["argv"][0]))
 			{
 				$ex = explode("/", $_SERVER["argv"][0]);
 				foreach($ex as $item)
