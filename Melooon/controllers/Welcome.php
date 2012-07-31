@@ -12,4 +12,9 @@
 
 		}
 		
+		public function index()
+		{
+			
+		}
+		
 	}
