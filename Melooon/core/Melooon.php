@@ -27,12 +27,10 @@
 	// Then load the 'Load' class to get ready for in-controller loads
 	$__load =& Loader::load_class("Load");
 	
-	$__load->view("test.html");
+	Loader::load_controller("Welcome");
 	
 	$__load->model("Test");
 	
-	$__load->model->test->do_something();
-	
-	Loader::load_controller("Welcome");
+	$__load->test->do_something();
 	
 	die(var_dump(get_instance()));
