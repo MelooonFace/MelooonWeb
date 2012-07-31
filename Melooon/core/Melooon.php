@@ -27,9 +27,8 @@
 	// Then load the 'Load' class to get ready for in-controller loads
 	$__load =& Loader::load_class("Load");
 	
-	Loader::load_controller("Welcome");
+	// Load the controller
+	Loader::load_controller(get_controller());
 	
-	$__load->model("Test");
-	
-	$__load->model->test->do_something();
-	
+	// Call the method + send the method to send (by default)
+	Loader::call_method(get_method(), get_args());

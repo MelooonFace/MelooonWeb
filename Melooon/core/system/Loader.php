@@ -98,7 +98,7 @@
 					
 					if(!($m instanceof Controller))
 					{
-						$__output->append_output("<br />\n<b>Warning:</b> Controller <b>$class_name</b> is not an instance of Controller.");
+						chuck_error("Warning", "Controller <b>$class_name</b> is not an instance of Controller");
 					}
 					
 					return $m;
@@ -106,15 +106,41 @@
 				
 				else
 				{
-					$debug = debug_backtrace();
-					$__output->append_output("<br />\n<b>Error:</b> Controller could not be loaded, class <b>{$class_name}</b> was not found! Controller requested in <b>" .$debug[0]['file']. "</b> on <b>line " .$debug[0]['line']. "</b>.");
+					chuck_error("Error", "Controller could not be loaded, class <b>{$class_name}</b> was not found");
 				}
 			}
 			
 			else
 			{
-				$debug = debug_backtrace();
-				$__output->append_output("<br />\n<b>Error:</b> Controller could not be loaded, controller file <b>{$full_file_path}</b> was not found! Controller requested in <b>" .$debug[0]['file']. "</b> on <b>line " .$debug[0]['line']. "</b>.");
+				chuck_error("Error", "Controller could not be loaded, controller file <b>{$full_file_path}</b> was not found");
+			}
+		}
+		
+		public function call_method($method = null, $args = null)
+		{
+			global $__output;
+			$m =& get_instance();
+			
+			if($method == null)
+				$method = get_method();
+			
+			if($args == null)
+				$args = get_args();
+				
+			if(method_exists( $m, "__route" ))
+			{
+				$method = "__route";
+			}
+			
+			if(method_exists( $m, $method ))
+			{
+				call_user_func_array(array($m, $method), $args);
+			}
+			
+			else
+			{
+				chuck_error("Error", "Method could not be called, method <b>{$method}</b> was not found in Controller <b>" .get_controller(). "</b>,");
+				return;
 			}
 		}
 		
