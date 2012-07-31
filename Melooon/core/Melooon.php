@@ -31,6 +31,5 @@
 	
 	$__load->model("Test");
 	
-	$__load->test->do_something();
+	$__load->model->test->do_something();
 	
-	die(var_dump(get_instance()));
