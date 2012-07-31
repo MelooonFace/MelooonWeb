@@ -14,7 +14,7 @@
 	{
 		global $__output;
 		$call = debug_backtrace();
-		$__output->append_output("<br />\n<b{$type}:</b> {$message} in <b>" .$call[1]['file']. "</b> on <b>line " .$call[1]['line']. "</b>.");
+		$__output->append_output("<br />\n<b>{$type}:</b> {$message} in <b>" .$call[1]['file']. "</b> on <b>line " .$call[1]['line']. "</b>.");
 	}
 	
 	function get_controller()
