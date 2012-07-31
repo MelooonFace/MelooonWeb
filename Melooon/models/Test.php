@@ -11,7 +11,7 @@
 		public function do_something()
 		{
 			// Temporary example
-			// $this->m->set_output("LOL!");
+			$this->_get('output')->set_output("LOL!");
 		}
 		
 	}
