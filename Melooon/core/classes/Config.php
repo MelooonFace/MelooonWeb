@@ -8,12 +8,7 @@
 		function __construct()
 		{
 			// Load the default config + the custom edited config
-			$this->load(
-				array(
-					"defaults.php",
-					"config.php"
-				)
-			);
+			$this->load("defaults.php;config.php");
 		}
 		
 		/**
@@ -38,6 +33,9 @@
 		function load($file_path = null)
 		{
 			global $__output;
+			
+			if(!is_array($file_path) && strpos($file_path, ";") != FALSE)
+				$file_path = explode(";", $file_path);
 		
 			if(is_array($file_path))
 			{
