@@ -9,6 +9,23 @@
 		{
 			// Load the default config + the custom edited config
 			$this->load("defaults.php;config.php");
+						
+			if($this->item("base_url") == null)
+			{
+				if (isset($_SERVER['HTTP_HOST']))
+				{
+					$base_url = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+					$base_url .= '://'. $_SERVER['HTTP_HOST'];
+					$base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+				}
+	
+				else
+				{
+					$base_url = 'http://localhost/';
+				}
+	
+				$this->set('base_url', $base_url);
+			}
 		}
 		
 		/**
@@ -21,10 +38,24 @@
 			$ret = $this->config;
 			foreach($args as $arg)
 			{
-				$ret = $ret[$arg];
+				if(isset($ret[$arg]))
+					$ret = $ret[$arg];
 			}
 			
+			if($ret == $this->config)
+				$ret = null;
+			
 			return $ret;
+		}
+		
+		/**
+		 * Set a config item
+		 */
+		public function set($item, $value)
+		{
+			$this->config[$item] = $value;
+			
+			return $this;
 		}
 		
 		/**
@@ -32,7 +63,7 @@
 		 */
 		function load($file_path = null)
 		{
-			global $__output;
+			global $__output, $__error;
 			
 			if(!is_array($file_path) && strpos($file_path, ";") != FALSE)
 				$file_path = explode(";", $file_path);
@@ -69,7 +100,7 @@
 			
 			else
 			{
-				chuck_error("Error", "Config could not be loaded, config file <b>{$full_file_path}</b> was not found");
+				$__error->error_page("Config Error", "Config could not be loaded, file not found.");
 			}
 		}
 		

@@ -15,7 +15,7 @@
 		 */
 		public function view($file_path, $args = array(), $return = false)
 		{
-			global $__output;
+			global $__output, $__error;
 		
 			$full_file_path = APP_PATH. 'views/' .$file_path;
 		
@@ -37,7 +37,7 @@
 			
 			else
 			{
-				chuck_error("Error", "View could not be loaded, view file <b>{$full_file_path}</b> was not found");
+				$__error->error_page("View Error", "View could not be loaded, file not found!");
 			}
 		}
 		
@@ -67,7 +67,7 @@
 					
 					if(!($this->model->$this_name instanceof Model))
 					{
-						chuck_error("Warning", "Model <b>{$model_name}</b> is not an instance of Model");
+						$__error->error_page("Model Error", "Model <b>{$model_name}</b> is not a model.");
 					}
 					
 					return $this->model->$this_name;
@@ -75,19 +75,14 @@
 				
 				else 
 				{
-					chuck_error("Error", "Model could not be loaded, class <b>{$model_name}</b> not found");
+					$__error->error_page("Model Error", "Model could not be loaded, class not found.");
 				}
 			}
 			
 			else
 			{
-					chuck_error("Error", "Model could not be loaded, view file <b>{$full_file_path}</b> was not found");
+				$__error->error_page("Model Error", "Model could not be loaded, file not found.");
 			}
 		}
 		
-	}
-	
-	class Load_Model
-	{
-		// A place to hold the models
 	}

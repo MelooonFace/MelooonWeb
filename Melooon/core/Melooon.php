@@ -18,6 +18,9 @@
 	// Load the output class first, just incase some pre-controller classes have something to say
 	$__output =& Loader::load_class("Output");
 	
+	// Load the error system, for 404s and custom errors + error handling from this point
+	$__error =& Loader::load_class("Error");
+	
 	// Create an instance of the config class
 	$__conf =& Loader::load_class("Config");
 	
@@ -26,6 +29,9 @@
 	
 	// Then load the 'Load' class to get ready for in-controller loads
 	$__load =& Loader::load_class("Load");
+	
+	// Set the error handler before initiating the controller (where errors are more likely to error)
+	set_error_handler('error_handler');
 	
 	// Load the controller
 	Loader::load_controller(get_controller());

@@ -81,7 +81,7 @@
 		
 		public function load_controller($file_path)
 		{
-			global $__output;
+			global $__output, $__error;
 			
 			$file_path = str_replace(".php", "", $file_path);
 			$full_file_path = APP_PATH. 'controllers/' .$file_path. '.php';
@@ -98,7 +98,8 @@
 					
 					if(!($m instanceof Controller))
 					{
-						chuck_error("Warning", "Controller <b>$class_name</b> is not an instance of Controller");
+						$__error->error_page("Controller Error", "Controller <strong>{$class_name}</strong> is not a controller. Try making the controller extend the class <strong>Controller</strong>.");
+						// chuck_error("Controller <strong>$class_name</strong> is not a controller", E_USER_WARNING);
 					}
 					
 					return $m;
@@ -106,19 +107,19 @@
 				
 				else
 				{
-					chuck_error("Error", "Controller could not be loaded, class <b>{$class_name}</b> was not found");
+					$__error->error_404();
 				}
 			}
 			
 			else
 			{
-				chuck_error("Error", "Controller could not be loaded, controller file <b>{$full_file_path}</b> was not found");
+				$__error->error_404();
 			}
 		}
 		
 		public function call_method($method = null, $args = null)
 		{
-			global $__output;
+			global $__output, $__error;
 			$m =& get_instance();
 			
 			if($method == null)
@@ -139,7 +140,7 @@
 			
 			else
 			{
-				chuck_error("Error", "Method could not be called, method <b>{$method}</b> was not found in Controller <b>" .get_controller(). "</b>,");
+				$__error->error_404();
 				return;
 			}
 		}
