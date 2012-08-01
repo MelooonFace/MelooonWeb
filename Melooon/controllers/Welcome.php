@@ -6,14 +6,13 @@
 		function __construct()
 		{
 			parent::__construct();
-						
-			$this->output->append_output(
-				$this->config->item("default_controller"));
-
 		}
 		
 		public function index()
 		{
+						
+			$this->output->append_output(
+				$this->load->view('welcome.php'));
 			
 		}
 		
