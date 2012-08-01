@@ -2,7 +2,7 @@
 
 	<head>
 	
-		<title>MercuryMVC - Default Homepage</title>
+		<title>Melooon - Welcome!</title>
 		<style type="text/css">
 			
 			body {
